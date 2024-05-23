@@ -7,13 +7,11 @@ const useSearchMovie = ()=>{
     const dispatch = useDispatch();
 	// console.log("Mohabbat")
 	const getSearchMovies = async () => {
-		const data = await fetch(
-			"https://api.themoviedb.org/3/movie/popular?page=1",
-			API_OPTIONS
-		);
-		const JsonData = await data.json();
+	    // const data = await fetch("https://api.themoviedb.org/3/search/movie?query="+ moviename+"&include_adult=false&language=en-US&page=1",API_OPTIONS);
+
+		// const JsonData = await data.json();
 		// console.log("PopularMovies",JsonData);
-		dispatch(addSearchMovies(JsonData?.results));
+		// dispatch(addSearchMovies(JsonData?.results));
 	};
 
 	useEffect(() => {

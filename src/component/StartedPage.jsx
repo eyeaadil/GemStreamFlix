@@ -8,7 +8,7 @@ const StartedPage = () => {
     <div className=''>
         <div className='h-fit md:h-screen object-cover' style={{backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6)), url(${BG_URL})`}}>
             <div className='flex justify-between px-4 md:px-20 py-4 items-center'>
-                <img src='./assets/Netflix_Logo.png' alt='netflixlogo' className='w-36 md:w-48' />
+                <img src='./assets/final_logo.jpg' alt='netflixlogo' className='w-36 md:w-48' />
                 <div className=''>
                    <Link to={"/login"} >
                       <button className='bg-red-600 text-white px-4 py-2 text-lg rounded-md' type='button'>Sign In</button>

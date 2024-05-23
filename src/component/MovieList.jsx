@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 // import { useDispatch } from 'react-redux'
 const MovieList = ({title,movies}) => {
   // const dispatch = useDispatch();
-  console.log("MovieList",movies)
+  // console.log("MovieList",movies)
   // const posterPath = movies && movies[0]?.poster_path;
     // console.log("Adil",posterPath)
 
@@ -20,7 +20,7 @@ const MovieList = ({title,movies}) => {
             {
               movies?.map((movie)=>(
                 <Link key={movie.id} to={"/watch?v=" + movie?.id} >
-                <MovieCard  key={movie.id} posterPath={movie.poster_path} title={movie.title}/>
+                <MovieCard className="gap-3" key={movie.id} posterPath={movie.poster_path} title={movie.title}/>
                 </Link>
                 
               ))

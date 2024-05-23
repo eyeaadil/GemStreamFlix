@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useSearchParams } from "react-router-dom";
 // import useMovieTrailer from "../hooks/useMovieTrailer";
 import { useSelector } from "react-redux";
@@ -9,14 +9,14 @@ const WatchPage = () => {
   const [searchParams] = useSearchParams();  //HW -> Read more about useSearchParams
   const movieId = searchParams.get('v')
 //   const title = searchParams.get('title')
-  console.log("Adil",movieId);
+  // console.log(movieId);
   // console.log("Movie watch",trailerVideo);
   
 
     useMovieTrailer(movieId);
   //  console.log("thos is running S")
   const trailerVideo = useSelector((store) => store.movies?.trailerVideo);
-   console.log(trailerVideo)
+  //  console.log(trailerVideo)
   return (
         <div className="bg-black pb-5 pt-20 md:pt-24">
             <div className="w-fit m-auto"> 

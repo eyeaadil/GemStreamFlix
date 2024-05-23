@@ -26,7 +26,7 @@ const GptSearchBar = () => {
 
   const handleGeminiSearchClick = async()=>{
     const searchtext = searchText.current.value
-    console.log(searchtext)
+    // console.log(searchtext)
     // make an API  call to GPT API and get Movie Results
 
     const gptQuery = "Act as a Movie Recommendation system and suggest some movies for thw query"+searchText.current.value+".only give me names of 5 movies,comma seperated like the example result given ahead.Example Result: Taare Zamee par, 3-Idiots ,Golmaal,Tiger Zinda Hai,Jawaan";
@@ -50,7 +50,7 @@ const GptSearchBar = () => {
         // Split the comma-separated movie titles into an array
         const geminiMovies = text?.split(",")?.map(movie => movie?.trim());
 
-        console.log("gemini movie",geminiMovies);
+        // console.log("gemini movie",geminiMovies);
         // search for each movie
         const promiseArray=geminiMovies.map((movie)=>searchMovieTMDB(movie))
         // here we get array of promise because searchMovieTMDB is async function
@@ -58,7 +58,7 @@ const GptSearchBar = () => {
         // [promise1,promise2,promise3,promise4,promise5]
 
         const tmdbResults = await Promise.all(promiseArray)  // this promise.all take the array of promise
-        console.log("Promise array",tmdbResults);
+        // console.log("Promise array",tmdbResults);
         dispatch(addGeminiMovieResult({movieNames:geminiMovies,movieResults:tmdbResults}))
       } catch (error) {
         console.error("Error fetching movie recommendations:", error);

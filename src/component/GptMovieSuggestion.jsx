@@ -6,8 +6,8 @@ import { Link } from "react-router-dom";
 const GptMovieSuggestion = () => {
 	const gpt = useSelector((store) => store.gpt);
 	const { movieNames, movieResults } = gpt;
-  console.log("gptNames",movieNames);
-	console.log("gpt suggesstion", movieResults);
+//   console.log("gptNames",movieNames);
+	// console.log("gpt suggesstion", movieResults);
 	return (
 		<div className="p-4 m-4 bg-black text-white bg-opacity-80">
 			<div>
