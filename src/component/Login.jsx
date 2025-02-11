@@ -3,37 +3,29 @@ import Header from "./Header";
 import { checkValidateData } from "../utils/validate";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { signInWithEmailAndPassword } from "firebase/auth";
-// import { getAuth, updateProfile } from "firebase/auth";
-
 import { auth } from "../utils/firebase";
-// import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
 import { BG_URL } from "../utils/constant";
+
 const Login = () => {
 	const [isSignInForm, setIsSignInForm] = useState(true);
 	const [errorMessage, setErrorMessage] = useState(null);
-	// const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const email = useRef(null);
 	const password = useRef(null);
 	const name = useRef(null);
 
 	const handleButtonClick = () => {
-		// validate the from data
 		const message = checkValidateData(
 			email.current.value,
 			password.current.value
 		);
-		// console.log(email.current.value);
-		// console.log(password.current.value);
-		// console.log(message)
 		setErrorMessage(message);
 
 		if (message) return;
 
 		if (!isSignInForm) {
-			// signUp logic
 			createUserWithEmailAndPassword(
 				auth,
 				email.current.value,
@@ -41,10 +33,7 @@ const Login = () => {
 				name.current.value
 			)
 				.then((userCredential) => {
-					// Signed up
 					const user = userCredential.user;
-
-					// const auth = getAuth();
 					updateProfile(user, {
 						displayName: name.current.value,
 						photoURL: "https://example.com/jane-q-user/profile.jpg",
@@ -59,34 +48,25 @@ const Login = () => {
 									photoURL: photoURL,
 								})
 							);
-							// navigate("/browse");
 						})
 						.catch((error) => {
 							setErrorMessage(error.message);
 						});
-
-					// console.log("Signed In", user);
 				})
 				.catch((error) => {
 					const errorCode = error.code;
 					const errorMessage = error.message;
 					setErrorMessage(errorCode + "-" + errorMessage);
-					// ..
 				});
 		} else {
-			// signIn
-
 			signInWithEmailAndPassword(
 				auth,
 				email.current.value,
 				password.current.value
 			)
 				.then((userCredential) => {
-					// Signed in
 					const user = userCredential.user;
-					// navigate("/browse");
 					console.log(user);
-					// ...
 				})
 				.catch((error) => {
 					const errorCode = error.code;
@@ -94,8 +74,6 @@ const Login = () => {
 					setErrorMessage(errorCode + "-" + errorMessage);
 				});
 		}
-
-		// signIn // and signUp
 	};
 
 	const toggleSignInForm = () => {
@@ -103,18 +81,19 @@ const Login = () => {
 	};
 
 	return (
-		<div>
+		<div className="relative min-h-screen">
 			<Header />
-			<div className="absolute">
+			<div className="absolute inset-0">
 				<img
 					src={BG_URL}
-					alt=""
+					alt="background"
+					className="w-full h-full object-cover"
 				/>
 			</div>
 
 			<form
 				onSubmit={(e) => e.preventDefault()}
-				className="w-3/12 text-white absolute p-12 bg-black my-36 mx-auto right-0 left-0 bg-opacity-80 rounded-lg"
+				className="w-full md:w-3/12 text-white absolute p-8 md:p-12 bg-black my-36 mx-auto right-0 left-0 bg-opacity-80 rounded-lg"
 			>
 				<h1 className="font-bold text-3xl py-4">
 					{isSignInForm ? "Sign In" : "Sign Up"}
@@ -142,7 +121,7 @@ const Login = () => {
 				/>
 				<p className="text-red-700">{errorMessage}</p>
 				<button
-					className="p-4  my-6 rounded-lg bg-red-700 w-full"
+					className="p-4 my-6 rounded-lg bg-red-700 w-full"
 					onClick={handleButtonClick}
 				>
 					{isSignInForm ? "Sign In" : "Sign Up"}
